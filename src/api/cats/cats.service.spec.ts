@@ -18,7 +18,7 @@ describe('CatsService', () => {
   });
 
   describe('create', () => {
-    it('should return an array of cats', async () => {
+    it('should create a cat', async () => {
       const createCatDto: CreateCatDto = {}
       expect(service.create(createCatDto)).toBe('This action adds a new cat')
     })
