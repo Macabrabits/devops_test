@@ -33,8 +33,18 @@ RUN npm ci --production
 ###########################################################################
 ###########################################################################
 
-FROM development AS test
-CMD [ "npm", "run", "test:cov" ]
+FROM node_builder AS nest_builder
+RUN npm install --development
+COPY --chown=node:node . .
+RUN npm run build
+
+###########################################################################
+###########################################################################
+
+FROM nest_builder AS test
+USER root
+CMD npx jest --ci --json --coverage --testLocationInResults --outputFile=coverage/report.json
+# CMD [ "npm", "run", "test:cov" ]
 
 ###########################################################################
 ###########################################################################
