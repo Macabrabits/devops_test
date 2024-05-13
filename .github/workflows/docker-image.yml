@@ -115,11 +115,14 @@ jobs:
   delivery:    
     needs: build_and_push
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
     - uses: actions/checkout@v4
     - name: update image tag
       run: |
-        sed -i 's/tag: \"[0-9a-z]*\"$/tag: \"${{github.run_number}}\"/g' ${{ github.workspace }}/helm/app/values.yaml        
+        sed -i 's/tag: \"[0-9a-z]*\"$/tag: \"${{github.run_number}}\"/g' ${{ github.workspace }}/helm/nttdata_test/values.yaml        
         cat ${{ github.workspace }}/helm/nttdata_test/values.yaml
 
     - name: commit
