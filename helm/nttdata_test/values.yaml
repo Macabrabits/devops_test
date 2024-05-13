@@ -8,7 +8,7 @@ image:
   repository: macabrabits/devops-test
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "74"
 
 imagePullSecrets: []
 nameOverride: ""
